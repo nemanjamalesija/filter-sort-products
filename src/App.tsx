@@ -36,6 +36,7 @@ function App() {
     e:
       | React.MouseEvent<HTMLButtonElement, MouseEvent>
       | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLInputElement>
   ) => {
     let value: string;
     let key: string;
@@ -47,6 +48,15 @@ function App() {
       value = buttonTarget.textContent as string;
       key = buttonTarget.getAttribute('data-type') as string;
     }
+
+    if (
+      e.type === 'click' &&
+      buttonTarget.getAttribute('data-type') === 'currentColor'
+    ) {
+      value = buttonTarget.getAttribute('data-color') as string;
+      key = buttonTarget.getAttribute('data-type') as string;
+    }
+
     if (e.type === 'change') {
       key = inputTarget.name;
       value = inputTarget.value;

@@ -28,11 +28,13 @@ export const initialState: stateType = {
     },
   ],
   filters: {
+    searchTerm: '',
     category: 'all',
     company: 'all',
     price: 0,
     shipping: false,
     colors: ['', '', ''],
+    currentColor: '',
   },
   loading: true,
 };

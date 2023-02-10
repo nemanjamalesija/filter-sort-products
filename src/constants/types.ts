@@ -17,6 +17,6 @@ export type filtersType = {
 export type stateType = {
   products: product[];
   filteredProducts: product[];
-  filters: any;
+  filters: filtersType;
   loading: boolean;
 };
