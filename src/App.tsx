@@ -17,6 +17,12 @@ function App() {
         );
       }
 
+      if (category && category !== 'all') {
+        filteredProductsTemp = filteredProductsTemp.filter(
+          (prod) => prod.category === category
+        );
+      }
+
       setState((prev) => {
         return { ...prev, filteredProducts: filteredProductsTemp };
       });
