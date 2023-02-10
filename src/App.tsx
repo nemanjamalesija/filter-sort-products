@@ -72,7 +72,16 @@ function App() {
 
     fetchProducts()
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) =>
+        setState((prev) => {
+          return {
+            ...prev,
+            products: [...data],
+            filteredProducts: [...data],
+            loading: false,
+          };
+        })
+      );
   }, []);
 
   if (state.loading) return <h1>Loading...</h1>;
