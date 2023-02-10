@@ -29,13 +29,19 @@ function App() {
         );
       }
 
+      if (currentColor && currentColor !== 'all') {
+        filteredProductsTemp = filteredProductsTemp.filter((prod) =>
+          prod.colors.includes(currentColor as string)
+        );
+      }
+
       setState((prev) => {
         return { ...prev, filteredProducts: filteredProductsTemp };
       });
     };
 
     filterProductsHandler();
-  }, [state.filters]);
+  }, [state.filters, state.products]);
 
   useEffect(() => {
     const fetchProducts = async () => {
