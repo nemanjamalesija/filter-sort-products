@@ -23,6 +23,12 @@ function App() {
         );
       }
 
+      if (company && company !== 'all') {
+        filteredProductsTemp = filteredProductsTemp.filter(
+          (prod) => prod.company === company
+        );
+      }
+
       setState((prev) => {
         return { ...prev, filteredProducts: filteredProductsTemp };
       });
