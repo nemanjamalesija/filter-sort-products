@@ -7,8 +7,6 @@ import { filtersType, stateType } from './constants/types';
 function App() {
   const [state, setState] = useState(initialState);
 
-  useEffect(() => console.log(state), [state.filters]);
-
   useEffect(() => {
     const fetchProducts = async () => {
       return await fetch('https://course-api.com/react-store-products');
@@ -34,12 +32,12 @@ function App() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     const target = e.target as Element;
-    const name = target.getAttribute('data-type') as string;
+    const key = target.getAttribute('data-type') as keyof filtersType;
     const value = target.textContent as string;
 
-    const newState = { ...state };
-    newState.filters[name as keyof filtersType] = value;
-    setState(newState);
+    setState((prev) => {
+      return { ...prev, filters: { ...prev.filters, [key]: value } };
+    });
   };
 
   return (
