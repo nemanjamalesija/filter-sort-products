@@ -28,8 +28,8 @@ export const initialState: stateType = {
     },
   ],
   filters: {
-    category: '',
-    company: '',
+    category: 'all',
+    company: 'all',
     price: 0,
     shipping: false,
     colors: ['', '', ''],

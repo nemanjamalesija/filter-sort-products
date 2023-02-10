@@ -10,19 +10,13 @@ export type product = {
   shipping: boolean;
 };
 
+export type filtersType = {
+  [key: string]: string | string[] | number | boolean;
+};
+
 export type stateType = {
   products: product[];
   filteredProducts: product[];
-  filters: {
-    category: string;
-    company: string;
-    price: number;
-    shipping: boolean;
-    colors: string[];
-  };
+  filters: any;
   loading: boolean;
-};
-
-export type productsProps = {
-  products: product[];
 };

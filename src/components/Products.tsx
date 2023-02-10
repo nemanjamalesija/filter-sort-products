@@ -1,6 +1,10 @@
 import React from 'react';
-import { product, productsProps } from '../constants/types';
+import { product } from '../constants/types';
 import SingleProduct from './SingleProduct';
+
+export type productsProps = {
+  products: product[];
+};
 
 const Products = ({ products }: productsProps) => {
   return (
