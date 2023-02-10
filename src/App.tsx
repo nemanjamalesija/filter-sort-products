@@ -8,6 +8,10 @@ function App() {
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
+    console.log(state.filters);
+  }, [state.filters]);
+
+  useEffect(() => {
     const fetchProducts = async () => {
       return await fetch('https://course-api.com/react-store-products');
     };
@@ -29,11 +33,24 @@ function App() {
   if (state.loading) return <h1>Loading...</h1>;
 
   const setActiveFilterHandler = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const target = e.target as Element;
-    const key = target.getAttribute('data-type') as keyof filtersType;
-    const value = target.textContent as string;
+    let value: string;
+    let key: string;
+
+    const buttonTarget = e.target as Element;
+    const inputTarget = e.target as HTMLInputElement;
+
+    if (e.type === 'click') {
+      value = buttonTarget.textContent as string;
+      key = buttonTarget.getAttribute('data-type') as string;
+    }
+    if (e.type === 'change') {
+      key = inputTarget.name;
+      value = inputTarget.value;
+    }
 
     setState((prev) => {
       return { ...prev, filters: { ...prev.filters, [key]: value } };
