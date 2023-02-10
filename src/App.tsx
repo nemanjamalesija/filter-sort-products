@@ -2,13 +2,27 @@ import React, { useState, useEffect } from 'react';
 import Products from './components/Products';
 import Sidebar from './components/Sidebar';
 import { initialState } from './constants/initialState';
-import { filtersType, stateType } from './constants/types';
 
 function App() {
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
-    console.log(state.filters);
+    const filterProductsHandler = () => {
+      let filteredProductsTemp = [...state.products];
+      const { searchTerm, category, company, currentColor } = state.filters;
+
+      if (searchTerm) {
+        filteredProductsTemp = filteredProductsTemp.filter((prod) =>
+          prod.name.includes(searchTerm as string)
+        );
+      }
+
+      setState((prev) => {
+        return { ...prev, filteredProducts: filteredProductsTemp };
+      });
+    };
+
+    filterProductsHandler();
   }, [state.filters]);
 
   useEffect(() => {

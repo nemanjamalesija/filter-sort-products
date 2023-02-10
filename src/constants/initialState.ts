@@ -34,7 +34,7 @@ export const initialState: stateType = {
     price: 0,
     shipping: false,
     colors: ['', '', ''],
-    currentColor: '',
+    currentColor: 'all',
   },
   loading: true,
 };
