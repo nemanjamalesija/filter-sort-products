@@ -1,66 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
-type product = {
-  id: string;
-  category: string;
-  colors: string[];
-  company: string;
-  description: string;
-  image: string;
-  name: string;
-  price: number;
-  shipping: boolean;
-};
-
-type stateType = {
-  products: product[];
-  filteredProducts: product[];
-  filters: {
-    category: string;
-    company: string;
-    price: number;
-    shipping: boolean;
-    colors: string[];
-  };
-  loading: boolean;
-};
-
-const initialState: stateType = {
-  products: [
-    {
-      id: '',
-      category: '',
-      description: '',
-      company: '',
-      colors: ['', '', ''],
-      image: '',
-      name: '',
-      price: 0,
-      shipping: false,
-    },
-  ],
-  filteredProducts: [
-    {
-      id: '',
-      category: '',
-      description: '',
-      company: '',
-      colors: ['', '', ''],
-      image: '',
-      name: '',
-      price: 0,
-      shipping: false,
-    },
-  ],
-  filters: {
-    category: '',
-    company: '',
-    price: 0,
-    shipping: false,
-    colors: ['', '', ''],
-  },
-  loading: true,
-};
+import Products from './components/Products';
+import Sidebar from './components/Sidebar';
+import { initialState } from './constants/initialState';
 
 function App() {
   const [state, setState] = useState(initialState);
@@ -86,7 +27,12 @@ function App() {
 
   if (state.loading) return <h1>Loading...</h1>;
 
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Sidebar products={state.products} />
+      <Products products={state.filteredProducts} />
+    </div>
+  );
 }
 
 export default App;
